@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - rel/*
+      - Nmnaren-patch-1
   pull_request:
     branches:
       - main
@@ -14,10 +15,30 @@ on:
   workflow_dispatch:
 
 jobs:
-   runs-on ubuntu-latest
+  build:
+   runs-on: ubuntu-latest
+   env:
+     MY_ENV_VAR : "my value"
+     MY_TEST_ENV: "Test"
    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: execute the sh script
         run: |
           echo "test pipeline"
+          #cp newstashfile
+          mkdir -p artifacts
+          ls -la
+          ls -al  artifacts
+          cp -r newstashfile artifacts
+          ls -al artifacts
+          echo "Artifact content" > artifacts/newstashfile
+          echo "Secret value: ${{ secrets.TEST }}"
+          echo "Secret value: $TEST"
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          name: my-artifacts
+          path: artifacts
+          retention-days: "1"
+           
