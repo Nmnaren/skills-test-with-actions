@@ -34,6 +34,7 @@ jobs:
           ls -al artifacts
           echo "Artifact content" > artifacts/newstashfile
           echo "Secret value: ${{ secrets.TEST }}"
+          echo "Secret value: $TEST"
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
