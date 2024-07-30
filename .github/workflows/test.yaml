@@ -27,7 +27,9 @@ jobs:
           echo "test pipeline"
           #cp newstashfile
           mkdir -p artifacts
+          ls -la
           cp -r newstashfile artifacts
+          ls -al
           echo "Artifact content" > artifacts/newstashfile
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
