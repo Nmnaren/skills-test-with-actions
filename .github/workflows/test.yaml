@@ -17,9 +17,21 @@ on:
 jobs:
   build:
    runs-on: ubuntu-latest
+   env:
+     MY_ENV_VAR : "my value"
    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: execute the sh script
         run: |
           echo "test pipeline"
+          cp newstashfile
+          mkdir -p artifacts
+          echo "Artifact content" > artifacts/newstashfile
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          name: my-artifacts
+          path: artifacts
+          retention-days: "1"
+           
