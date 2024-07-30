@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - rel/*
+      - Nmnaren-patch-1
   pull_request:
     branches:
       - main
