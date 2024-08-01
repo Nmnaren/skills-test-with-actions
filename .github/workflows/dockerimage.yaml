@@ -4,11 +4,11 @@ on:
  push:
     branches:
         - main
-        - dockerimages
+        - dockerimage
  pull_request:
     branches:
         - main
-        - dockerimages
+        - dockerimage
  workflow_dispatch:
 
 jobs:
