@@ -4,11 +4,11 @@ on:
     push:
         branches:
           - main
-          - ci
+          - cibuild
     pull_request:
         branches:
           - main
-          - ci
+          - cibuild
     workflow_dispatch:
 
 env:
@@ -35,9 +35,9 @@ jobs:
             context:
             push: true
             tags: ${{ secrets.dockerusername }}/nginx:latest
-        - name: Image digest
-          id: digest
-          run: echo "Image digest: ${{ steps.build-and-push.output.digest}}"
+      #  - name: Image digest
+      #    id: digest
+      #    run: echo "Image digest: ${{ steps.build-and-push.outputs.digest }}"
     
 
 
