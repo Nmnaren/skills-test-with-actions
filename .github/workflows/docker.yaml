@@ -36,7 +36,7 @@ jobs:
           with:
             context: .
             push: true
-            tags: ${{ secrets.dockerusername }}/nginx:latest
+            tags: narendrababulinux/nginx:latest
         
         #- name: Image digest
         #  id: digest
