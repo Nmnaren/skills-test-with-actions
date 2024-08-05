@@ -17,6 +17,11 @@ on:
           type: string
         tag: 
           type: string
+      secrets:
+          dockerusername:
+              required: true
+          dockerpassword:
+              required: true
 
 env:
     username: ${{ secrets.dockerusername }}
