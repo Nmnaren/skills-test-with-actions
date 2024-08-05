@@ -48,4 +48,3 @@ jobs:
         #  run: echo "Image digest: ${{ steps.build-and-push.outputs.digest }}"
 
 
-
