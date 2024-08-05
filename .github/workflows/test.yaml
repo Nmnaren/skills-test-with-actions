@@ -41,4 +41,7 @@ jobs:
           name: my-artifacts
           path: artifacts
           retention-days: "1"
-           
+      - uses: octo-org/example-repo/.github/workflows/reusable-workflow.yml@main
+        with:
+          config-path: .github/dockerimage.yaml
+          secrets: inherit     
