@@ -10,9 +10,9 @@ on:
         required: true
         type: string
     secrets:
-      username:
+      dockerusername:
         required: true
-      password:
+      dockerpassword:
         required: true
 
 jobs:
