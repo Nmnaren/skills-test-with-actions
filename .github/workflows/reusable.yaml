@@ -24,8 +24,14 @@ jobs:
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.dockerpassword  }}" | docker login -u "${{ secrets.dockerusername  }}" --password-stdin
-
+      #- name: Build and push Docker image
+      #  run: |
+      #    docker build -t ${{ inputs.image_name }}:${{ inputs.tag }} .
+      #   docker push ${{ inputs.image_name }}:${{ inputs.tag }}
       - name: Build and push Docker image
-        run: |
-          docker build -t ${{ inputs.image_name }}:${{ inputs.tag }} .
-          docker push ${{ inputs.image_name }}:${{ inputs.tag }}
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: narendrababulinux/nginx:latest
+       
