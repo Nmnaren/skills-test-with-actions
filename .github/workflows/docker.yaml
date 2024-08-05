@@ -10,13 +10,20 @@ on:
           - main
           - cibuild
     workflow_dispatch:
+    workflow_call:
+      inputs:
+        image_name:
+          required: true
+          type: string
+        tag: 
+          type: string
 
 env:
     username: ${{ secrets.dockerusername }}
     password: ${{ secrets.dockerpassword }}
 
 jobs:
-    docker_build:
+  docker_build:
         runs-on: ubuntu-latest
         steps:
         - name: Checkout repository
@@ -41,6 +48,5 @@ jobs:
         #- name: Image digest
         #  id: digest
         #  run: echo "Image digest: ${{ steps.build-and-push.outputs.digest }}"
-
 
 
