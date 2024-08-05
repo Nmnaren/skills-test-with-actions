@@ -10,6 +10,13 @@ on:
           - main
           - cibuild
     workflow_dispatch:
+    workflow_call:
+      inputs:
+        image_name:
+          required: true
+          type: string
+        tag: 
+          type: string
 
 env:
     username: ${{ secrets.dockerusername }}
