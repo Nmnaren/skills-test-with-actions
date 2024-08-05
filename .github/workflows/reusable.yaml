@@ -1,0 +1,37 @@
+name: Docker Build
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+      tag:
+        required: true
+        type: string
+    secrets:
+      dockerusername:
+        required: true
+      dockerpassword:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.dockerpassword  }}" | docker login -u "${{ secrets.dockerusername  }}" --password-stdin
+      #- name: Build and push Docker image
+      #  run: |
+      #    docker build -t ${{ inputs.image_name }}:${{ inputs.tag }} .
+      #   docker push ${{ inputs.image_name }}:${{ inputs.tag }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: narendrababulinux/nginx:latest
+       
