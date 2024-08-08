@@ -1,0 +1,49 @@
+name: Docker Build and Push
+
+on: 
+  push:
+    branches:
+      - main
+      - cibuild
+  pull_request:
+    branches:
+      - main
+      - cibuild
+  workflow_dispatch:
+
+env:
+  username: ${{ secrets.dockerusername }}
+  password: ${{ secrets.dockerpassword }}
+
+jobs:
+  call-workflow-passing-data: 
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      config-path: .github/dockerimage.yaml
+      secrets: inherit  
+  docker_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.dockerusername }}
+          password: ${{ secrets.dockerpassword }}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: narendrababulinux/nginx:latest
+      
+      - name: Assign Reviewers
+        uses: kesselborn/pull-request-reviewer-action@v1
+        with:
+          reviewers: 'Nmnaren'
