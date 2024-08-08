@@ -4,7 +4,8 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "main , cibuild" ]
+    branches:
+    - cibuild
   pull_request:
     branches:
         - main
