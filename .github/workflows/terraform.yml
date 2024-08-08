@@ -20,8 +20,7 @@ jobs:
       uses: azure/login@v1
       with:
         azureusername: ${{ secrets.AZUREUSERNAME }}
-        azurepassword: ${{ secrets.AZUREPASSWORD}}
-
+        azurepassword: ${{ secrets.AZUREPASSWORD }}
     - name: Terraform Init
       run: terraform init
 
